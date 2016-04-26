@@ -24,6 +24,7 @@ public class DrawingPanel extends JPanel
 	private DrawingPanel basePanel;
 	private ShapePanel shapePanel;
 	private JButton drawRectangleButton;
+	private JButton drawPolygonButton;
 	private ArrayList<Rectangle> rectangleList;
 	
 	
@@ -33,8 +34,13 @@ public class DrawingPanel extends JPanel
 		this.baseController = baseController;
 		baseLayout = new SpringLayout();
 		shapePanel = new ShapePanel();
+		baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 50, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 50, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, 350, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, shapePanel, -50, SpringLayout.EAST, this);
 		rectangleList = new ArrayList<Rectangle>();
 		drawRectangleButton = new JButton("Draw rectangle");
+		drawPolygonButton = new JButton("make a polygon");
 		
 		
 		
@@ -47,9 +53,11 @@ public class DrawingPanel extends JPanel
 	public void setupPanel()
 	{
 		this.add(drawRectangleButton);
+		this.add(drawPolygonButton);
 		this.setLayout(baseLayout);
 		this.setBackground(Color.WHITE);
 		this.setPreferredSize(new Dimension(500, 500));
+		this.add(shapePanel);
 	}
 	
 	public void setupLayout()
@@ -64,12 +72,13 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				int xPosition = (int)(Math.random() * 600);
+			/*	int xPosition = (int)(Math.random() * 600);
 				int yPosition = (int)(Math.random() * 600);
 				int width = (int)(Math.random() * 50);
 				int height = (int)(Math.random() * 50);
 				
-				rectangleList.add(new Rectangle(xPosition, yPosition, width, height));
+				rectangleList.add(new Rectangle(xPosition, yPosition, width, height));   */
+				shapePanel.addTriangle();
 				repaint();
 			}
 		});
