@@ -63,8 +63,8 @@ public class DrawingPanel extends JPanel
 		this.setPreferredSize(new Dimension(800, 800));
 		this.add(shapePanel);
 		this.add(drawSquareButton);
-		this.add(drawTriangleButton);
-		this.add(drawEllipseButton);
+		this.add(drawTriangleButton);								//Height based on value of array. The width constant, xPos is width*index, and xPos is 10 (or 50 or 100) 
+		this.add(drawEllipseButton);								//make in GraphPanel (for inheritance project) class.
 		this.add(drawPolygonButton);
 		this.add(drawCircleButton);
 		this.add(clearButton);
