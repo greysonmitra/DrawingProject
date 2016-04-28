@@ -29,6 +29,7 @@ public class DrawingPanel extends JPanel
 	private JButton drawCircleButton;
 	private JButton drawEllipseButton;
 	private JButton drawTriangleButton;
+	private JButton clearButton;
 	private ArrayList<Rectangle> rectangleList;
 	
 	
@@ -41,8 +42,12 @@ public class DrawingPanel extends JPanel
 		
 		rectangleList = new ArrayList<Rectangle>();
 		drawRectangleButton = new JButton("Draw rectangle");
-		
-		
+		drawSquareButton = new JButton("make a square");
+		drawTriangleButton = new JButton("make a triangle");
+		drawEllipseButton = new JButton("make a ellipse");
+		drawPolygonButton = new JButton("make a polygon");
+		drawCircleButton = new JButton("make a circle");
+		clearButton = new JButton("CLEAR");
 		
 		
 		setupPanel();
@@ -54,19 +59,15 @@ public class DrawingPanel extends JPanel
 	{
 		this.add(drawRectangleButton);
 		this.setLayout(baseLayout);
-		this.setBackground(Color.WHITE);
+		this.setBackground(Color.GRAY);
 		this.setPreferredSize(new Dimension(800, 800));
 		this.add(shapePanel);
-		drawSquareButton = new JButton("make a square");
-		add(drawSquareButton);
-		drawTriangleButton = new JButton("make a triangle");
-		add(drawTriangleButton);
-		drawEllipseButton = new JButton("make a ellipse");
-		add(drawEllipseButton);
-		drawPolygonButton = new JButton("make a polygon");
-		add(drawPolygonButton);
-		drawCircleButton = new JButton("make a circle");
-		add(drawCircleButton);
+		this.add(drawSquareButton);
+		this.add(drawTriangleButton);
+		this.add(drawEllipseButton);
+		this.add(drawPolygonButton);
+		this.add(drawCircleButton);
+		this.add(clearButton);
 	}
 	
 	public void setupLayout()
@@ -87,6 +88,9 @@ public class DrawingPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.NORTH, drawSquareButton, 6, SpringLayout.SOUTH, drawTriangleButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, drawTriangleButton, 13, SpringLayout.SOUTH, shapePanel);
 		baseLayout.putConstraint(SpringLayout.WEST, drawSquareButton, 158, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, clearButton, 0, SpringLayout.NORTH, drawSquareButton);
+		baseLayout.putConstraint(SpringLayout.EAST, clearButton, 0, SpringLayout.EAST, shapePanel);
+		
 	}
 	
 	public void setupListeners()
@@ -150,11 +154,19 @@ public class DrawingPanel extends JPanel
 				repaint();
 			}
 		});
+		
+		clearButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				shapePanel.clear();
+			}
+		});
 	}
 	
 	protected void paintComponent(Graphics currentGraphics)
 	{
-		super.paintComponents(currentGraphics);
+		super.paintComponent(currentGraphics);
 		Graphics2D mainGraphics = (Graphics2D)currentGraphics;
 		mainGraphics.setColor(Color.GREEN);
 		mainGraphics.setStroke(new BasicStroke(15));
