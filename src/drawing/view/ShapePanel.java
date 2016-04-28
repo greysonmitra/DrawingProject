@@ -40,7 +40,13 @@ public class ShapePanel extends JPanel
 	
 	public void addSquare()
 	{
+		int xPoint = (int)(Math.random() * 1000);
+		int yPoint = (int)(Math.random() * 1000);
+		int side = (int)(Math.random() * 300);
 		
+		Rectangle square = new Rectangle(xPoint, yPoint, side, side);
+		squareList.add(square);
+		repaint();
 	}
 	
 	public void addEllipse()
@@ -53,6 +59,7 @@ public class ShapePanel extends JPanel
 		
 		Ellipse2D ellipse = new Ellipse2D.Double(xPoint, yPoint, width, height);
 		ellipseList.add(ellipse);
+		repaint();
 	}
 	
 	public void addCircle()
@@ -140,6 +147,31 @@ public class ShapePanel extends JPanel
 			
 			mainGraphics.fill(circle);
 		}
+		
+		for(Ellipse2D ellipse : ellipseList)
+		{
+			int randomStroke = (int)(Math.random() * 7);
+			int red = (int)(Math.random() * 256);
+			int blue = (int)(Math.random() * 256);
+			int green = (int)(Math.random() * 256);
+			mainGraphics.setColor(new Color(red, green, blue));
+			mainGraphics.setStroke(new BasicStroke(randomStroke));
+			
+			mainGraphics.fill(ellipse);
+		}
+		
+		for(Rectangle square : squareList)
+		{
+			int randomStroke = (int)(Math.random() * 7);
+			int red = (int)(Math.random() * 256);
+			int blue = (int)(Math.random() * 256);
+			int green = (int)(Math.random() * 256);
+			mainGraphics.setColor(new Color(red, green, blue));
+			mainGraphics.setStroke(new BasicStroke(randomStroke));
+			
+			mainGraphics.fill(square);
+		}
+		
 		//draw in here
 	}
 	
